@@ -83,6 +83,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Middleware\DebugMiddleware.cs" />
+    <Compile Include="Middleware\DebugMiddlewareOptions.cs" />
+    <Compile Include="Middleware\DebugMiddlewareExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />

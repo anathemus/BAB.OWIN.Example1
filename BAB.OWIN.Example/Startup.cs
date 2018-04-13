@@ -1,7 +1,10 @@
 ﻿using System;
 using Owin;
 using System.Diagnostics;
+using Nancy.Owin;
 using BAB.OWIN.Example.Middleware;
+using Nancy;
+using System.Web.Http;
 
 namespace BAB.OWIN.Example
 {
@@ -25,6 +28,15 @@ namespace BAB.OWIN.Example
                     watch.Stop();
                     Debug.WriteLine("Request took: " + watch.ElapsedMilliseconds + " ms");
                 }
+            });
+
+            var config = new HttpConfiguration();
+            config.MapHttpAttributeRoutes();
+            app.UseWebApi(config);
+
+            // app.Map("/nancy", mappedApp => { mappedApp.UseNancy(); });
+            app.UseNancy(conf => {
+                conf.PassThroughWhenStatusCodesAre(HttpStatusCode.NotFound);
             });
                 
                 app.Use(async (ctx, next) => {
